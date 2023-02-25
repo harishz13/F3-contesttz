@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>F-3 Contest(Harish)</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="#">Teacher Portal</a></li>
+            <li style="float:right"><a href="#">Signup</a></li>
+            <li style="float:right"><a href="#">Login</a></li>
+        </ul>
+    </nav>
+    <form id="signup">
+        
+        <input type="text" id="name" placeholder="Full Name" required>
+       
+        <input type="email" id="email"placeholder="Mail" required>
+        
+        <input type="password" id="password" placeholder="Password" required>
+        
+        <input type="password" id="confirm-password" placeholder="Confirm password" required>
+        <button type="submit">Signup</button>
+      </form>
+      
+      <script>
+        const signup = document.getElementById("signup");
+      
+        signup.addEventListener("submit", (event) => {
+          event.preventDefault();
+      
+          const name = document.getElementById("name").value;
+          const email = document.getElementById("email").value;
+          const password = document.getElementById("password").value;
+          const confirmPassword = document.getElementById("confirm-password").value;
+      
+          if (password !== confirmPassword) {
+            alert("Passwords do not match");
+            return;
+          }
+      
+          const users = JSON.parse(localStorage.getItem("users")) || [];
+      
+          const newUser = {
+            name,
+            email,
+            password,
+          };
+      
+          users.push(newUser);
+          localStorage.setItem("users", JSON.stringify(users));
+      
+          alert("Signup successful!");
+          window.location.href = "login.html";
+        });
+      </script>
+</body>
+</html>
